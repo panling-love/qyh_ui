@@ -1,8 +1,15 @@
 <template >
   <button
     class="qyh-button"
-    :class="[`qyh-button-${size}`, `qyh-button-${type}`]"
+    :class="[`qyh-button-${size}`, `qyh-button-${type}`,{
+      'is-plain':plain,
+      'is-round': round,
+      'is-circle': circle,
+      'is-loading': loading,
+      'is-disabled': disabled
+    }]"
     :style="{ width: Width,height: Height }"
+    @click='clickHandle'
   >
     <slot>按钮</slot>
   </button>
@@ -12,30 +19,16 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component({})
 export default class Button extends Vue {
-  @Prop({
-    type: String,
-    required: false,
-    default: "small",
-  })
-  size?: string;
-  @Prop({
-    type: String,
-    required: false,
-    default: "primary",
-  })
-  type: string;
-  @Prop({
-    type: Number || String,
-    required: false,
-    default: "40px",
-  })
-  width: Number | String;
-  @Prop({
-    type: Number || String,
-    required: false,
-    default: "20px",
-  })
-  height?: Number | String;
+  @Prop() size?: string;
+  @Prop({default: 'text'}) type?: string;
+  @Prop() width?: Number | String;
+  @Prop() height?: Number | String;
+  @Prop() plain?: Boolean;
+  @Prop() round?: Boolean;
+  @Prop() circle?: Boolean;
+  @Prop() loading?: Boolean;
+  @Prop() disabled?: Boolean;
+  @Prop() click?: Event;
 
   get Width() {
     if (typeof this.width === "number") {
@@ -51,11 +44,16 @@ export default class Button extends Vue {
       return this.height;
     }
   }
+
+  clickHandle(e:Event) {
+    this.disabled ? e.preventDefault() : this.$emit('click', e);
+  }
 }
 </script>
 <style lang="scss" scoped>
 .qyh-button {
   display: inline-block;
+  position: relative;
   line-height: 1;
   white-space: nowrap;
   cursor: pointer;
@@ -219,12 +217,45 @@ export default class Button extends Vue {
   border-radius: 50%;
   padding: 12px;
 }
+//loading属性 loading的背景颜色
+.qyh-button.is-loading::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  border-radius: inherit;
+  background-color: rgba(255,255,255,.5);
+}
+//loading属性 loading的加载动画
+.qyh-button.is-loading::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: .7em;
+  margin-right: .5em;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  vertical-align: -10%;
+  clip-path: polygon(0%, 0%, 100%, 0%, 100%, 30%, 0%, 30%);
+  animation: rotate 1s linear infinite;
+}
+@keyframes rotate {
+  from {
+    transform: translateZ(0deg);
+  }
+  to {
+    transform: translateZ(360deg);
+  }
+}
 // icon配套样式
-.qyh-button [class*="one-icon-"] + span {
+.qyh-button [class*="qyh-icon-"] + span {
   margin-left: 5px;
 }
 // disabled属性
 .qyh-button.is-disabled {
-  cursor: no-drop;
+  cursor: not-allowed;
 }
 </style>
