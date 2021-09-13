@@ -13,8 +13,11 @@
     :disabled='true'
     /> -->
 
-    <qyh-radio v-model="radio" label="1">男</qyh-radio>
-    <qyh-radio v-model="radio" label="2">女</qyh-radio>
+    <!-- <qyh-radio v-model="radio" label="1">男</qyh-radio>
+    <qyh-radio v-model="radio" label="2">女</qyh-radio> -->
+
+    <qyh-checkbox v-model="checkout" label="1">复选一</qyh-checkbox>
+    <qyh-checkbox v-model="radio" label="1">复选二</qyh-checkbox>
 
   </div>
 </template>
@@ -24,12 +27,14 @@ import { Component, Vue } from "vue-property-decorator";
 import qyhButton from "./components/Button.vue";
 import qyhInput from "./components/Input.vue"
 import qyhRadio from "./components/radio.vue"
+import qyhCheckbox from "./components/checkbox.vue"
 
 @Component({
   components: {
     qyhButton,
     qyhInput,
-    qyhRadio
+    qyhRadio,
+    qyhCheckbox
   },
 })
 export default class App extends Vue {
@@ -39,6 +44,7 @@ export default class App extends Vue {
   max=10
   maxlength=10
   radio = 1
+  checkout = 2
 
   clickHandle(e:Event) {
     console.log('点击事件', e);
