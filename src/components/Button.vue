@@ -19,6 +19,7 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component({})
 export default class Button extends Vue {
+  name = 'qyhButton';
   @Prop() size?: string;
   @Prop({default: 'text'}) type?: string;
   @Prop() width?: Number | String;

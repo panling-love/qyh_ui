@@ -5,13 +5,16 @@
     @click='clickHandle' 
     ></qyh-Button> -->
 
-    <qyh-input :type='type' v-model='value' 
+    <!-- <qyh-input :type='type' v-model='value' 
     :max='max'
     :min='min'
     :maxlength='maxlength'
     @blur='blurHandle'
     :disabled='true'
-    />
+    /> -->
+
+    <qyh-radio v-model="radio" label="1">男</qyh-radio>
+    <qyh-radio v-model="radio" label="2">女</qyh-radio>
 
   </div>
 </template>
@@ -20,11 +23,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import qyhButton from "./components/Button.vue";
 import qyhInput from "./components/Input.vue"
+import qyhRadio from "./components/radio.vue"
 
 @Component({
   components: {
     qyhButton,
-    qyhInput
+    qyhInput,
+    qyhRadio
   },
 })
 export default class App extends Vue {
@@ -33,6 +38,7 @@ export default class App extends Vue {
   min=1
   max=10
   maxlength=10
+  radio = 1
 
   clickHandle(e:Event) {
     console.log('点击事件', e);

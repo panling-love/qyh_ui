@@ -19,6 +19,7 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component({})
 export default class Input extends Vue {
+  name = 'qyhInput'
   @Prop() type?: string;
   @Prop() value?: Number | String;
   @Prop() max?: Date | Number;
