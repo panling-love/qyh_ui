@@ -9,6 +9,8 @@
     :max='max'
     :min='min'
     :maxlength='maxlength'
+    @blur='blurHandle'
+    :disabled='true'
     />
 
   </div>
@@ -34,6 +36,9 @@ export default class App extends Vue {
 
   clickHandle(e:Event) {
     console.log('点击事件', e);
+  }
+  blurHandle(e:Event) {
+    console.log('blur', e);
   }
 }
 </script>
