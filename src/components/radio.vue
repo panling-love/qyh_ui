@@ -15,19 +15,23 @@
   </label>
 </template>
 <script lang='ts'>
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch, Inject } from "vue-property-decorator";
 
 @Component({})
 export default class qyhRadio extends Vue {
   name = 'qyhRadio'
   @Prop() label:any;
   @Prop() value?:Number | String;
-
+  @Inject('RadioGroup') RadioGroup: any;
   get model() {
-    return this.value;
+    return this.isRadioGroup ? this.RadioGroup.value : this.value;
   }
   set model(val) {
-    this.$emit('input', val);
+    this.isRadioGroup ? this.RadioGroup.$emit('input', val) : this.$emit('input', val);
+  }
+
+  get isRadioGroup() {
+    return !!this.RadioGroup;
   }
 }
 </script>

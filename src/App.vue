@@ -16,9 +16,14 @@
     <!-- <qyh-radio v-model="radio" label="1">男</qyh-radio>
     <qyh-radio v-model="radio" label="2">女</qyh-radio> -->
 
-    <qyh-checkbox v-model="checkout" label="1">复选一</qyh-checkbox>
-    <qyh-checkbox v-model="radio" label="1">复选二</qyh-checkbox>
+    <!-- <qyh-checkbox v-model="checkout" label="1">复选一</qyh-checkbox>
+    <qyh-checkbox v-model="radio" label="1">复选二</qyh-checkbox> -->
 
+    <qyh-radio-group v-model="radio">
+      <qyh-radio label="1">男一</qyh-radio>
+      <qyh-radio label="2">男二</qyh-radio>
+      <qyh-radio label="3">男三</qyh-radio>
+    </qyh-radio-group>
   </div>
 </template>
 
@@ -28,13 +33,15 @@ import qyhButton from "./components/Button.vue";
 import qyhInput from "./components/Input.vue"
 import qyhRadio from "./components/radio.vue"
 import qyhCheckbox from "./components/checkbox.vue"
+import qyhRadioGroup from "./components/radio-group.vue"
 
 @Component({
   components: {
     qyhButton,
     qyhInput,
     qyhRadio,
-    qyhCheckbox
+    qyhCheckbox,
+    qyhRadioGroup
   },
 })
 export default class App extends Vue {
