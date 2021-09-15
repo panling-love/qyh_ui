@@ -22,7 +22,7 @@ export default class qyhRadio extends Vue {
   name = 'qyhRadio'
   @Prop() label:any;
   @Prop() value?:Number | String;
-  @Inject('RadioGroup') RadioGroup: any;
+  @Inject() RadioGroup: any;
   get model() {
     return this.isRadioGroup ? this.RadioGroup.value : this.value;
   }
