@@ -19,11 +19,13 @@
     <!-- <qyh-checkbox v-model="checkout" label="1">复选一</qyh-checkbox>
     <qyh-checkbox v-model="radio" label="1">复选二</qyh-checkbox> -->
 
-    <qyh-radio-group v-model="radio">
+    <!-- <qyh-radio-group v-model="radio">
       <qyh-radio label="1">男一</qyh-radio>
       <qyh-radio label="2">男二</qyh-radio>
       <qyh-radio label="3">男三</qyh-radio>
-    </qyh-radio-group>
+    </qyh-radio-group> -->
+
+    <qyh-switch v-model="switchValue"></qyh-switch>
   </div>
 </template>
 
@@ -34,6 +36,7 @@ import qyhInput from "./components/Input.vue"
 import qyhRadio from "./components/radio.vue"
 import qyhCheckbox from "./components/checkbox.vue"
 import qyhRadioGroup from "./components/radio-group.vue"
+import qyhSwitch from "./components/switch.vue"
 
 @Component({
   components: {
@@ -41,7 +44,8 @@ import qyhRadioGroup from "./components/radio-group.vue"
     qyhInput,
     qyhRadio,
     qyhCheckbox,
-    qyhRadioGroup
+    qyhRadioGroup,
+    qyhSwitch
   },
 })
 export default class App extends Vue {
@@ -52,6 +56,7 @@ export default class App extends Vue {
   maxlength=10
   radio = 1
   checkout = 2
+  switchValue = true
 
   clickHandle(e:Event) {
     console.log('点击事件', e);

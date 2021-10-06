@@ -15,22 +15,25 @@
   </label>
 </template>
 <script lang='ts'>
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Prop, Inject } from "vue-property-decorator";
 
 @Component({})
 export default class qyhCheckbox extends Vue {
   name = 'qyhCheckbox'
   @Prop() label:any;
   @Prop() value?:Number | String;
-
+  @Inject() CheckboxGroup: any;
   get model() {
-    return this.value;
+    return this.isCheckboxGroup ? this.CheckboxGroup.value : this.value;
   }
   set model(val) {
-    this.$emit('input', val);
+    this.isCheckboxGroup ? this.CheckboxGroup.$emit('input', val) : this.$emit('input', val);
   }
   get isChecked() {
     return this.model;
+  }
+  get isCheckboxGroup() {
+    return !!this.CheckboxGroup;
   }
 }
 </script>

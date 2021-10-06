@@ -6,9 +6,9 @@
 <script lang='ts'>
 import { Vue, Prop, Provide,Component } from "vue-property-decorator";
 @Component
-export default class qyhRadioGroup extends Vue {
-  name = 'qyhRadioGroup'
+export default class qyhCheckboxGroup extends Vue {
+  name = 'qyhCheckboxGroup'
   @Prop() value?:Number | String;
-  @Provide() RadioGroup = this;
+  @Provide() CheckboxGroup = this;
 }
 </script>
